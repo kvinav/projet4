@@ -1,0 +1,15 @@
+louvre_louvre:
+    resource: "@LouvreLouvreBundle/Resources/config/routing.yml"
+    prefix:   /
+
+home:
+    path: /
+    defaults: { _controller: LouvreLouvreBundle:Louvre:home }
+
+notice:
+    path: /notice
+    defaults: { _controller: LouvreLouvreBundle:Louvre:notice }
+
+order:
+    path: /order
+    defaults: { _controller: LouvreLouvreBundle:Louvre:order }

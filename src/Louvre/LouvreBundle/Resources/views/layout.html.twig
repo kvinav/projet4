@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Billetterie du Louvre{% endblock %}</title>
+    {% stylesheets 'bundles/louvrelouvre/css/main.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+    {% endstylesheets %}
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('bundles/louvrelouvre/images/favlouvre.ico') }}" />
+    <link href="https://fonts.googleapis.com/css?family=Vollkorn" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Vollkorn+SC" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+</head>
+<body>
+<div class="container">
+<header id="header">
+    <div><img src="{{ asset('bundles/louvrelouvre/images/logolouvre.png') }}" alt="logo musée louvre">
+        <p id="textlogo">Musée du Louvre</p></div>
+</header>
+<label>
+    <input type="checkbox"/>
+    <span class="menu">
+      <span class="hamburger"></span>
+      </span>
+    <ul id="listmenuheader">
+        <li><a href="{{ path('home') }}">Accueil</a></li>
+        <li><a href="{{ path('order') }}">Billetterie</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</label>
+
+{% block body %}
+{% endblock %}
+<footer>
+    <div id="menufooter">
+        <ul>
+            <li><h3><a href="{{ path('home') }}">Accueil</a></h3></li>
+            <li><h3><a href="{{ path('order') }}">Billetterie</a></h3></li>
+            <li><h3><a href="#">Contact</a></h3></li>
+        </ul>
+
+    </div>
+    <div id="schedule"><h3>Horaires :</h3>
+        <p> Tous les jours de 9h à 19h. </p>
+        <p> Sauf le mardi et les jours féries.</p></br></br></br>
+        <p>Copyright - 2018 <a href="{{ path('notice') }}">Mentions légales</a></p>
+    </div>
+    <div id="prices"><h3>Tarifs :</h3>
+        <ul>
+            <li>Normal : 16 €</li>
+            <li>Enfant (4 à 12 ans) : 8 €</li>
+            <li>Senior ( à partir de 60 ans) : 12 €</li>
+            <li>Réduit : 10 €</li>
+            <li>Gratuit pour les enfants de moins de 4 ans.</li>
+        </ul>
+    </div>
+    <div id="arrowup">
+        <a href="#header"><i class="far fa-arrow-alt-circle-up fa-3x"></i></a>
+    </div>
+</footer>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+{% javascripts 'bundles/louvrelouvre/js/front.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/index.html.twig #}
+
+{% extends "LouvreLouvreBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Accueil{% endblock %}
+{% block body %}
+    <h2>Bienvenue sur la billetterie du musée du Louvre</h2>
+
+    <div id="containerhome">
+        <div class="price price1">
+            <h3>Tarif normal</h3>
+            <p class="pricetag"><strong><span>16 <span id="eurosign">€</span></span></strong></p>
+            <p>Gratuit pour les moins de 4 ans.</p>
+
+        </div>
+        <div class="price price2">
+            <h3>Tarif enfant</h3>
+            <p class="pricetag"><strong><span>8 <span id="eurosign">€</span></span></strong></p>
+            <p>Enfants de 4 à 8 ans.</p>
+
+        </div>
+        <div class="price price3">
+            <h3>Tarif senior</h3>
+            <p class="pricetag"><strong><span>12 <span id="eurosign">€</span></span></strong></p>
+            <p>Personnes ayant 60 ans ou plus.</p>
+
+        </div>
+        <div class="price price4">
+            <h3>Tarif réduit</h3>
+            <p class="pricetag"><strong><span>10 <span id="eurosign">€</span></span></strong></p>
+            <p>Etudiant, employé du musée, d’un service du Ministère de la Culture, militaire…*</p>
+
+        </div>
+    </div>
+
+    </br><p id="justificatif">* Un justificatif vous sera demandé à l'entrée du musée.</p><br><br>
+    <p id="text1">Le musée est ouvert tous les jours de 9h à 19h, sauf le mardi et les jours fériés.</p>
+    <p id="text2">Vous pouvez réserver des billets pour la journée, ou pour une demi-journée.</br> A partir de 14h, vous ne pouvez plus réserver de billets journée.<p>
+    <p id="divbtngoto"><button id="btngoto"><a href="#">Je réserve mon billet !</a></button><p>
+{% endblock %}
