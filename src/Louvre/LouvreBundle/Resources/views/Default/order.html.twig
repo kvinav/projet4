@@ -5,15 +5,64 @@
 {% block body %}
     <h2>Commande de billets</h2>
     <div id="containerhome">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sodales aliquam nunc, vitae sollicitudin felis tempus efficitur. Quisque tortor ante, tempor ullamcorper rhoncus accumsan, faucibus mollis quam. Vivamus sed sodales arcu. Mauris volutpat dui a ligula auctor, a facilisis ipsum efficitur. Nullam congue diam sed gravida maximus. Duis viverra tempor orci in mattis. Nulla porttitor blandit lobortis. Vivamus urna tortor, mollis ut ligula quis, laoreet placerat lacus.
+<div id="form">
 
-            Maecenas blandit nibh mi, quis hendrerit mauris dictum sit amet. Proin sed nibh faucibus, dictum neque in, pulvinar lectus. Ut ipsum libero, auctor eu ipsum sit amet, lacinia congue felis. Donec a venenatis arcu. Pellentesque eget tristique orci. Fusce congue eu sem nec consequat. Nam vitae mi sit amet diam tempor aliquam et in ligula. Integer dapibus ligula ante, id auctor quam vestibulum sit amet.
+            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
-            Aliquam ornare ante odio, at mattis turpis ornare eu. Donec vitae eros arcu. Proin feugiat molestie nibh, in elementum est convallis et. Proin in nibh non felis imperdiet interdum vel ut magna. Praesent tempus vestibulum orci id volutpat. Maecenas eu velit mauris. Aenean suscipit leo ut ex scelerisque, eu tempor mi pharetra. Donec id mauris sodales, tempus dolor nec, sollicitudin turpis. Praesent eu erat non augue venenatis molestie et quis ex.
+            {# Les erreurs générales du formulaire. #}
+            {{ form_errors(form) }}
 
-            Suspendisse non turpis non magna tempor varius a quis enim. Maecenas ut nulla vulputate dui fermentum scelerisque. Aenean sit amet tincidunt diam. Sed ullamcorper, libero ut euismod molestie, sem urna posuere libero, nec tempor turpis tellus vitae nisl. Nullam et ante libero. Donec eget eros placerat felis scelerisque viverra eget non massa. Suspendisse eu lacus augue. Nullam erat nulla, tempus quis ligula in, dictum eleifend ipsum. Cras mattis quis diam id gravida. Maecenas ac augue nec libero consectetur venenatis a vitae tortor.
+        <div id="form_booking">
+            <div id="dateVisit">
+                {{ form_label(form.dateVisit, "Date de votre visite", {'label_attr': {'class': 'datevisitlabel'}}) }}
+                {{ form_errors(form.dateVisit) }}
 
-            Cras quis libero vel lacus ultrices pulvinar. Nunc bibendum tellus nec dignissim blandit. Ut non mauris a dui lacinia luctus non at lacus. Mauris nunc orci, sollicitudin vel elementum vel, lacinia eget orci. Maecenas vel condimentum augue. Aenean at pellentesque sapien. Curabitur posuere nibh massa, sit amet dapibus purus imperdiet at. Aliquam mattis imperdiet libero. Nunc luctus at lorem eget </p>
+                    {{ form_widget(form.dateVisit, {'attr': {'class': 'datepicker'}}) }}
+            </div>
+            <div id="type">
+                {{ form_label(form.type, "Type de journée", {'label_attr': {'class': 'typelabel'}}) }}
+                {{ form_errors(form.type) }}
+                    {{ form_widget(form.type, {'attr': {'class': 'typeinput'}}) }}
+            </div>
+            <div id="email">
+                {{ form_label(form.email, "Votre adresse email", {'label_attr': {'class': 'emaillabel'}}) }}
+                {{ form_errors(form.email) }}
+                    {{ form_widget(form.email, {'attr': {'class': 'emailinput'}}) }}
+            </div>
+
+        </div>
+        <div id="form_tickets">
+
+            {{ form_label(form.tickets, "Ticket", {'label_attr': {'class': 'ticketlabel'}}) }}
+            {{ form_errors(form.tickets) }}
+            {{ form_widget(form.tickets, {'attr': {'class': 'ticketinput'}}) }}
+
+                <button><a href="#" id="add_ticket" class="btn btn-default">Ajouter un billet</a></button>
+
+
+
+        </div>
+
+
+
+            {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+            {{ form_widget(form.save, {'attr': {'class': 'submitbtn'}}) }}
+
+            {# Génération automatique des champs pas encore écrits.
+               Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
+               et tous les champs cachés (type « hidden »). #}
+            {{ form_rest(form) }}
+
+            {# Fermeture de la balise <form> du formulaire HTML #}
+            {{ form_end(form) }}
+
+
+
+
+</div>
+
     </div>
+
+
 
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace Louvre\LouvreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Booking
@@ -32,6 +33,7 @@ class Booking
      * @var \DateTime
      *
      * @ORM\Column(name="dateVisit", type="datetime")
+     * @Asserts\Date()
      */
     private $dateVisit;
 
@@ -98,30 +100,7 @@ class Booking
     {
         return $this->dateBooking;
     }
-
-    /**
-     * Set dateVisit.
-     *
-     * @param \DateTime $dateVisit
-     *
-     * @return Booking
-     */
-    public function setDateVisit($dateVisit)
-    {
-        $this->dateVisit = $dateVisit;
-
-        return $this;
-    }
-
-    /**
-     * Get dateVisit.
-     *
-     * @return \DateTime
-     */
-    public function getDateVisit()
-    {
-        return $this->dateVisit;
-    }
+    
 
     /**
      * Set type.
@@ -229,5 +208,29 @@ class Booking
     public function getTickets()
     {
         return $this->tickets;
+    }
+
+    /**
+     * Set dateVisit.
+     *
+     * @param \DateTime $dateVisit
+     *
+     * @return Booking
+     */
+    public function setDateVisit($dateVisit)
+    {
+        $this->dateVisit = $dateVisit;
+
+        return $this;
+    }
+
+    /**
+     * Get dateVisit.
+     *
+     * @return \DateTime
+     */
+    public function getDateVisit()
+    {
+        return $this->dateVisit;
     }
 }

@@ -5,6 +5,7 @@
     <title>{% block title %}Billetterie du Louvre{% endblock %}</title>
     {% stylesheets 'bundles/louvrelouvre/css/main.css' %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+
     {% endstylesheets %}
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('bundles/louvrelouvre/images/favlouvre.ico') }}" />
     <link href="https://fonts.googleapis.com/css?family=Vollkorn" rel="stylesheet">
@@ -61,6 +62,7 @@
 </footer>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
 {% javascripts 'bundles/louvrelouvre/js/front.js' %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}

@@ -8,6 +8,9 @@
 namespace Louvre\LouvreBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Louvre\LouvreBundle\Entity\Booking;
+use Louvre\LouvreBundle\Form\BookingType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class LouvreController extends Controller
@@ -24,10 +27,14 @@ class LouvreController extends Controller
         return new Response($content);
     }
 
-    public function orderAction()
+    public function orderAction(Request $request)
     {
-        $content = $this->get('templating')->render('LouvreLouvreBundle:Default:order.html.twig');
-        return new Response($content);
+        $booking = new Booking();
+        $form   = $this->get('form.factory')->create(BookingType::class, $booking);
+
+        return $this->render('LouvreLouvreBundle:Default:order.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
 }

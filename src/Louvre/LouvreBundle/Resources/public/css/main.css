@@ -409,3 +409,11 @@ footer i {
     text-align: center;
 }
 
+/* FORM CSS */
+
+#form_booking {
+    display: flex;
+    flex-direction: space-around;
+}
+
+
