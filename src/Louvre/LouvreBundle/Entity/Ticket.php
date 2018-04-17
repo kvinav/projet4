@@ -54,7 +54,7 @@ class Ticket
      *
      * @ORM\Column(name="Discount", type="boolean")
      */
-    private $discount;
+    private $discount = false;
 
     /**
      * @ORM\ManyToOne(targetEntity="Louvre\LouvreBundle\Entity\Booking", inversedBy="tickets")
