@@ -55,7 +55,15 @@ class Booking
      * @ORM\Column(name="price", type="integer")
      */
     private $price;
+    /**
+     * @ORM\OneToMany(targetEntity="Louvre\LouvreBundle\Entity\Ticket", mappedBy="booking")
+     */
+    private $tickets;
 
+    public function __construct()
+    {
+        $this->dateBooking = new \Datetime();
+    }
 
     /**
      * Get id.
@@ -185,5 +193,41 @@ class Booking
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     * Add ticket.
+     *
+     * @param \Louvre\LouvreBundle\Entity\Ticket $ticket
+     *
+     * @return Booking
+     */
+    public function addTicket(\Louvre\LouvreBundle\Entity\Ticket $ticket)
+    {
+        $this->tickets[] = $ticket;
+
+        return $this;
+    }
+
+    /**
+     * Remove ticket.
+     *
+     * @param \Louvre\LouvreBundle\Entity\Ticket $ticket
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeTicket(\Louvre\LouvreBundle\Entity\Ticket $ticket)
+    {
+        return $this->tickets->removeElement($ticket);
+    }
+
+    /**
+     * Get tickets.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
     }
 }
