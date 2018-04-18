@@ -37,7 +37,7 @@
             {{ form_errors(form.tickets) }}
             {{ form_widget(form.tickets, {'attr': {'class': 'ticketinput'}}) }}
 
-                <button><a href="#" id="add_ticket" class="btn btn-default">Ajouter un billet</a></button>
+            <button class="ui-button ui-widget ui-corner-all" id="add_ticket">Ajouter un billet</button>
 
 
 
@@ -46,7 +46,7 @@
 
 
             {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
-            {{ form_widget(form.save, {'attr': {'class': 'submitbtn'}}) }}
+            {{ form_widget(form.save, {'attr': {'class': 'submitbtn ui-button ui-widget ui-corner-all'}}) }}
 
             {# Génération automatique des champs pas encore écrits.
                Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)

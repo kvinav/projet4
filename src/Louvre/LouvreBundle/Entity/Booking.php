@@ -26,6 +26,7 @@ class Booking
      * @var \DateTime
      *
      * @ORM\Column(name="dateBooking", type="datetime")
+     * @Asserts\DateTime()
      */
     private $dateBooking;
 
@@ -48,6 +49,7 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Asserts\Email()
      */
     private $email;
 
