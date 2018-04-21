@@ -21,10 +21,10 @@ class TicketType extends AbstractType
             ->add('name',       TextType::class)
             ->add('surname',    TextType::class)
             ->add('country',    CountryType::class)
-            ->add('dateOfBirth',DateType::class)
+            ->add('dateOfBirth',TextType::class)
             ->add('discount',   CheckboxType::class, array(
                 'label'    => 'Tarif réduit ?',
-                'required' => true,
+                'required' => false,
                 ));
 
     }/**

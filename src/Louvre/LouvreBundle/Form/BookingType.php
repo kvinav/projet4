@@ -5,6 +5,7 @@ namespace Louvre\LouvreBundle\Form;
 
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -28,7 +29,9 @@ class BookingType extends AbstractType
                 ),
             ))
             ->add('email',      EmailType::class)
-            ->add('tickets',     TicketType::class)
+            ->add('tickets',     CollectionType::class, array(
+                'entry_type' => TicketType::class
+            ))
             ->add('save',       SubmitType::class);
     }/**
      * {@inheritdoc}

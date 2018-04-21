@@ -32,7 +32,16 @@ class LouvreController extends Controller
         $booking = new Booking();
         $form   = $this->get('form.factory')->create(BookingType::class, $booking);
 
-        return $this->render('LouvreLouvreBundle:Default:order.html.twig', array(
+
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($booking);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('notice', 'Réservation effectuée');
+            return $this->redirectToRoute('louvre_louvre_home');
+
+        }
+        return $this->render('LouvreLouvreBundle:Default:order.html.twig',array(
             'form' => $form->createView(),
         ));
     }

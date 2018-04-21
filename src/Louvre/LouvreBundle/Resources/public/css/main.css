@@ -359,11 +359,11 @@ footer i {
     margin-top: 60px;
     margin-bottom: 100px;
 }
-#btngoto {
+.btngoto {
     padding: 8px 16px;
     cursor: pointer;
-    border: 1px solid black;
-    background: linear-gradient(90deg, #000 50%, #000 50%);
+    border: 1px solid #318CE7;
+    background: linear-gradient(90deg, #318CE7 50%, #318CE7 50%);
     -webkit-background-clip: text;
     position: relative;
     color: black;
@@ -372,37 +372,40 @@ footer i {
     width: 300px;
 }
 
-#btngoto:after {
+.btngoto:after {
     content: "";
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(90deg, #000 50%, transparent 0%);
+    background: linear-gradient(90deg, #318CE7 50%, transparent 0%);
     z-index: -1;
 
 }
-#btngoto a {
+.btngoto a {
     text-decoration: none;
     color: black;
 }
-#btngoto,
-#btngoto:after {
+.btngoto,
+.btngoto:after {
     background-size: 300%;
     background-position: 100%;
     transition: 1s;
 
 }
 
-#btngoto:hover,
-#btngoto:hover:after {
+.btngoto:hover,
+.btngoto:hover:after {
     background-position: 0;
 
 }
-#btngoto:hover a {
+.btngoto:hover {
     transition: 1s;
-    color: white!important;
+    color: white;
+}
+#form .btngoto:hover {
+    color: white;
 }
 
 #justificatif {
@@ -410,9 +413,168 @@ footer i {
 }
 
 /* FORM CSS */
-
+#form {
+    display: flex;
+    flex-direction: column;
+}
 #form_booking {
     display: flex;
-    flex-direction: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #f4f4f4;
+
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+#form_booking div {
+    position: relative;
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 3%;
+}
+.ticketinput {
+    width: 100%;
+    padding-bottom: 50px;
+    margin-bottom: 30px;
+    background-color: #f4f4f4;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+
+}
+#louvre_louvrebundle_booking_tickets_0 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-left: 3%;
+
+}
+
+#louvre_louvrebundle_booking_tickets_0 div {
+    position: relative;
+
+    margin: 3% 1% 3% 2.7%;
+
+}
+
+#form .btngoto {
+    margin-left: 75%;
+}
+#delete_ticket {
+    padding: 8px 16px;
+    cursor: pointer;
+    border: 1px solid #F7230C;
+    background: linear-gradient(90deg, #F7230C 50%, #F7230C 50%);
+    -webkit-background-clip: text;
+    position: relative;
+    color: black;
+    font-size: 18px;
+    height: 60px;
+    width: 300px;
+    margin-bottom: 20px;
+
+}
+#delete_ticket:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(90deg, #F7230C 50%, transparent 0%);
+    z-index: -1;
+}
+#delete_ticket,
+#delete_ticket:after {
+    background-size: 300%;
+    background-position: 100%;
+    transition: 1s;
+
+}
+
+#delete_ticket:hover,
+#delete_ticket:hover:after {
+    background-position: 0;
+
+}
+#type {
+    display: flex;
+    flex-direction: row;
+    width: 500px;
+    padding-left: 10%;
+    padding-top: 17px;
+    font-size: 20px;
+}
+#type label {
+
+    margin-right: 20px;
+}
+#type select {
+    width: 150px;
+    height: 30px;
+    border: solid 1px #318CE7;
+}
+
+
+
+#louvre_louvrebundle_booking_tickets_0_country {
+    width: 150px;
+    height: 30px;
+    border: solid 1px #318CE7;
+    margin-left: 20px;
+    margin-top: 10px;
+
+}
+#louvre_louvrebundle_booking_tickets_0_discount {
+    font-size: 20px;
+}
+
+.submitbtn {
+    margin-left: 45%!important;
+    margin-top: 30px;
+}
+#form button {
+    width: 175px;
+    height: 45px;
+}
+#form h3 {
+    font-size: 28px;
+    text-align: center;
+}
+
+
+
+
+h1, input::-webkit-input-placeholder, button {
+    font-family: 'Vollkorn', serif;
+    transition: all 0.3s ease-in-out;
+    font-size: 20px;
+}
+
+input {
+
+    display: block;
+    width: 200px;
+    border: none;
+    padding: 10px 0;
+    border-bottom: solid 1px #318CE7;
+    transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #318CE7 4%);
+    background-position: -200px 0;
+    background-size: 200px 100%;
+    background-repeat: no-repeat;
+    color: #318CE7;
+    font-size: 14px;
+}
+input:focus, input:valid {
+    box-shadow: none;
+    outline: none;
+    background-position: 0 0;
+}
+input:focus::-webkit-input-placeholder, input:valid::-webkit-input-placeholder {
+    color: #318CE7;
+    font-size: 11px;
+    -webkit-transform: translateY(-30px);
+    transform: translateY(-30px);
+    visibility: visible !important;
 }
 

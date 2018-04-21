@@ -3,6 +3,7 @@
 namespace Louvre\LouvreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Ticket
@@ -25,6 +26,11 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Votre nom doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom doit contenir moins de {{ limit }} caractères")
      */
     private $name;
 
@@ -32,6 +38,11 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="surname", type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Votre prénom doit contenir au moins {{ limit }} caractères",
+     *      maxMessage = "Votre prénom doit contenir moins de {{ limit }} caractères")
      */
     private $surname;
 
@@ -46,6 +57,7 @@ class Ticket
      * @var \DateTime
      *
      * @ORM\Column(name="DateOfBirth", type="date")
+     * @Assert\Date()
      */
     private $dateOfBirth;
 

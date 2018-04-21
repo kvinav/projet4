@@ -3,6 +3,7 @@
 namespace Louvre\LouvreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -26,7 +27,7 @@ class Booking
      * @var \DateTime
      *
      * @ORM\Column(name="dateBooking", type="datetime")
-     * @Asserts\DateTime()
+     * @Assert\DateTime()
      */
     private $dateBooking;
 
@@ -34,7 +35,7 @@ class Booking
      * @var \DateTime
      *
      * @ORM\Column(name="dateVisit", type="datetime")
-     * @Asserts\Date()
+     * @Assert\Date()
      */
     private $dateVisit;
 
@@ -49,7 +50,7 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
-     * @Asserts\Email()
+     * @Assert\Email()
      */
     private $email;
 
@@ -61,12 +62,16 @@ class Booking
     private $price;
     /**
      * @ORM\OneToMany(targetEntity="Louvre\LouvreBundle\Entity\Ticket", mappedBy="booking")
+     *
      */
     private $tickets;
 
     public function __construct()
     {
         $this->dateBooking = new \Datetime();
+        $this->tickets = new ArrayCollection();
+        $ticket = new Ticket();
+        $this->addTicket($ticket);
     }
 
     /**
