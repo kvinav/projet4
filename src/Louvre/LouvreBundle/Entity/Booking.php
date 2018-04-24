@@ -35,7 +35,7 @@ class Booking
      * @var \DateTime
      *
      * @ORM\Column(name="dateVisit", type="datetime")
-     * @Assert\Date()
+     * @Assert\Date(message="Merci de renseigner une date valide")
      */
     private $dateVisit;
 
@@ -43,6 +43,7 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255)
+     * @Assert\Choice({"Journée", "Demi-journée"})
      */
     private $type;
 
@@ -50,7 +51,7 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
-     * @Assert\Email()
+     * @Assert\Email(message="Merci de renseigner un email valide")
      */
     private $email;
 

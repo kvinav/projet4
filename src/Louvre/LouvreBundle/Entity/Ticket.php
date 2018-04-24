@@ -26,11 +26,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 50,
-     *      minMessage = "Votre nom doit contenir au moins {{ limit }} caractères",
-     *      maxMessage = "Votre nom doit contenir moins de {{ limit }} caractères")
+     * @Assert\Length(min = 2, max = 50, minMessage = "Votre nom doit contenir au moins {{ limit }} caractères", maxMessage = "Votre nom doit contenir moins de {{ limit }} caractères")
      */
     private $name;
 
@@ -38,11 +34,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="surname", type="string", length=255)
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 50,
-     *      minMessage = "Votre prénom doit contenir au moins {{ limit }} caractères",
-     *      maxMessage = "Votre prénom doit contenir moins de {{ limit }} caractères")
+     * @Assert\Length(min = 2, max = 50, minMessage = "Votre prénom doit contenir au moins {{ limit }} caractères", maxMessage = "Votre prénom doit contenir moins de {{ limit }} caractères")
      */
     private $surname;
 
@@ -50,6 +42,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="Country", type="string", length=255)
+     * @Assert\Country(message="Merci de renseigner un pays valide")
      */
     private $country;
 
@@ -57,7 +50,7 @@ class Ticket
      * @var \DateTime
      *
      * @ORM\Column(name="DateOfBirth", type="date")
-     * @Assert\Date()
+     * @Assert\Date(message="Merci de renseigner une date valide")
      */
     private $dateOfBirth;
 
@@ -226,4 +219,5 @@ class Ticket
     {
         return $this->booking;
     }
+
 }

@@ -12,18 +12,47 @@ $(function () {
 
     /* ORDER FORM */
 
-    var unavailableDates = ["1/5/2018", "1/11/2018", "25/12/2018"];
+    /* Visit date configuration */
+
     var currentdate = new Date();
-    var datetime = currentdate.getHours();
-    if (datetime >= 14){
-        $('#louvre_louvrebundle_booking_type').val("0");
-        $('#louvre_louvrebundle_booking_type').attr("disabled", true);
-
-
-    }else {
-        $('#louvre_louvrebundle_booking_type').val("1");
-        $('#louvre_louvrebundle_booking_type').attr("disabled", false);
+    var currentmonth = currentdate.getMonth()+1;
+    if(currentmonth<10){
+        currentmonth='0'+currentmonth
     }
+    var currentday = currentdate.getDate();
+    if(currentday<10){
+        currentday='0'+currentday
+    }
+    var currentyear = currentdate.getFullYear();
+
+    var today = currentday+'/'+currentmonth+'/'+currentyear;
+    var currenttime = new Date();
+    var hours = currenttime.getHours();
+
+
+
+    var pickeddate = $('.datepicker').val();
+    $('.datepicker').on('click', function() {
+
+
+        if (today === pickeddate && hours >= 9){
+            $('#louvre_louvrebundle_booking_type').val("Demi-journée");
+            $('#louvre_louvrebundle_booking_type').attr("disabled", true);
+            console.log('CA MARCHE');
+
+
+        }else {
+            console.log(pickeddate);
+            console.log(today);
+            $('#louvre_louvrebundle_booking_type').val("Journée");
+            $('#louvre_louvrebundle_booking_type').attr("disabled", false);
+            console.log('CA MARCHE PAS');
+        }
+
+    });
+
+
+
 
 
     $('.ticketinput div:nth-child(3)').css("font-size", "20px");
@@ -63,8 +92,8 @@ $(function () {
 
     });
 
-    $('.datepicker').attr('readonly','readonly');
-    $('.datepicker').datepicker({
+    $('#louvre_louvrebundle_booking_dateVisit').attr('readonly','readonly');
+    $('#louvre_louvrebundle_booking_dateVisit').datepicker({
         altField: "#datepicker",
         closeText: 'Fermer',
         prevText: 'Précédent',
@@ -78,16 +107,10 @@ $(function () {
         weekHeader: 'Sem.',
         dateFormat: 'dd/mm/yy',
         minDate: 'today',
-        beforeShowDay: function(date) {
-            dmy = date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear();
-            if ($.inArray(dmy, unavailableDates) < 0) {
-                return [true,"",""];
-            }else {
-                return [false, "", ""];
-            }
-        }
 
     });
+
+
 
     $('#add_ticket').on('click', function(i) {
         var i;
