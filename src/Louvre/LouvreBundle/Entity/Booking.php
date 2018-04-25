@@ -5,6 +5,7 @@ namespace Louvre\LouvreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Louvre\LouvreBundle\Validator\HalfdayConstraint;
 
 /**
  * Booking
@@ -43,7 +44,7 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255)
-     * @Assert\Choice({"Journée", "Demi-journée"})
+     * @HalfdayConstraint()
      */
     private $type;
 
@@ -63,7 +64,7 @@ class Booking
     private $price;
     /**
      * @ORM\OneToMany(targetEntity="Louvre\LouvreBundle\Entity\Ticket", mappedBy="booking")
-     *
+     * @Assert\Valid()
      */
     private $tickets;
 

@@ -46,22 +46,25 @@ class LouvreController extends Controller
     {
         $booking = new Booking();
         $form   = $this->get('form.factory')->create(BookingType::class, $booking);
+        
 
 
+        if ($request->isMethod('POST')) {
 
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-           $session = $request->getSession();
-           $booking = $form->getData();
-           $session->set('booking', $booking);
-           $session->getFlashBag()->add('info', 'Les billets ont bien été enregistrés, vous pouvez procéder au paiement.');
+             $session = $request->getSession();
+             $booking = $form->getData();
+             $session->set('booking', $booking);
+
+            if ($form->handleRequest($request)->isValid()){
+                $booking->setType('Demi-journée');
+                $session->getFlashBag()->add('info', 'Les billets ont bien été enregistrés, vous pouvez procéder au paiement.');
 
 
+                return $this->redirectToRoute('payment');
 
-
-
-            return $this->redirectToRoute('payment');
-
+            }
         }
+
         return $this->render('LouvreLouvreBundle:Default:order.html.twig',array(
             'form' => $form->createView(),
         ));

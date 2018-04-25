@@ -36,6 +36,7 @@ class Ticket
      * @ORM\Column(name="surname", type="string", length=255)
      * @Assert\Length(min = 2, max = 50, minMessage = "Votre prénom doit contenir au moins {{ limit }} caractères", maxMessage = "Votre prénom doit contenir moins de {{ limit }} caractères")
      */
+
     private $surname;
 
     /**
@@ -51,6 +52,7 @@ class Ticket
      *
      * @ORM\Column(name="DateOfBirth", type="date")
      * @Assert\Date(message="Merci de renseigner une date valide")
+     * @Assert\LessThan("today", message="Veuillez rentrer une date valide")
      */
     private $dateOfBirth;
 

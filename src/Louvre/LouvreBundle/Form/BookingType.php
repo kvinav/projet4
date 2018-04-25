@@ -23,11 +23,16 @@ class BookingType extends AbstractType
     {
         $builder
             ->add('dateVisit',  DateType::class, array(
+                'label' => 'Date de la visite',
                 'widget' => 'single_text',
-                'format' => 'dd/mm/yy',
+                'format' => 'dd/MM/yyyy',
+                'placeholder'=> 'Date de la visite',
             ))
             ->add('type',       ChoiceType::class, array(
-                'choices' => $this->journeyType(),
+                'choices' => array(
+                    'Journée' => 'Journée',
+                    'Demi-journée' => 'Demi-journée',
+                ),
             ))
             ->add('email',      EmailType::class)
             ->add('tickets',     CollectionType::class, array(
@@ -52,14 +57,6 @@ class BookingType extends AbstractType
         return 'louvre_louvrebundle_booking';
     }
 
-    public function journeyType()
-    {
-
-        return array(
-            'Journée' => 'Journée',
-            'Demi-journée' => 'Demi-journée',
-        );
-    }
 
 
 }

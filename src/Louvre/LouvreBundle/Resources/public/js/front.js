@@ -31,19 +31,21 @@ $(function () {
 
 
 
-    var pickeddate = $('.datepicker').val();
-    $('.datepicker').on('click', function() {
+    var pickeddate = $('#louvre_louvrebundle_booking_dateVisit').val();
+    var journeyType = $('#louvre_louvrebundle_booking_type').val();
+    console.log(journeyType);
+    console.log(today);
+    console.log(hours);
+    $('#louvre_louvrebundle_booking_save').on('click', function() {
 
 
-        if (today === pickeddate && hours >= 9){
+        if (today === pickeddate && hours >= 14 && journeyType === 'Journée' ){
             $('#louvre_louvrebundle_booking_type').val("Demi-journée");
             $('#louvre_louvrebundle_booking_type').attr("disabled", true);
             console.log('CA MARCHE');
 
 
         }else {
-            console.log(pickeddate);
-            console.log(today);
             $('#louvre_louvrebundle_booking_type').val("Journée");
             $('#louvre_louvrebundle_booking_type').attr("disabled", false);
             console.log('CA MARCHE PAS');
@@ -63,6 +65,8 @@ $(function () {
     $($('#louvre_louvrebundle_booking_tickets_0 label')[0]).css("display", "none");
     $($('#louvre_louvrebundle_booking_tickets_0 label')[1]).css("display", "none");
     $($('#louvre_louvrebundle_booking_tickets_0 label')[3]).css("display", "none");
+
+
     $($('#form_tickets label')[0]).css("display", "none");
     $('#louvre_louvrebundle_booking_dateVisit').attr("placeholder", "Date de la visite");
     $('#louvre_louvrebundle_booking_email').attr("placeholder", "Email");
@@ -75,40 +79,7 @@ $(function () {
 
     $('#louvre_louvrebundle_booking_tickets_0_country').val("FR");
 
-    $('#louvre_louvrebundle_booking_tickets_0_dateOfBirth').attr('readonly','readonly');
-    $('#louvre_louvrebundle_booking_tickets_0_dateOfBirth').datepicker({
-        altField: "#datepicker",
-        closeText: 'Fermer',
-        prevText: 'Précédent',
-        nextText: 'Suivant',
-        currentText: 'Aujourd\'hui',
-        monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-        monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
-        dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-        dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
-        dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-        weekHeader: 'Sem.',
-        dateFormat: 'dd/mm/yy'
 
-    });
-
-    $('#louvre_louvrebundle_booking_dateVisit').attr('readonly','readonly');
-    $('#louvre_louvrebundle_booking_dateVisit').datepicker({
-        altField: "#datepicker",
-        closeText: 'Fermer',
-        prevText: 'Précédent',
-        nextText: 'Suivant',
-        currentText: 'Aujourd\'hui',
-        monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-        monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
-        dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-        dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
-        dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-        weekHeader: 'Sem.',
-        dateFormat: 'dd/mm/yy',
-        minDate: 'today',
-
-    });
 
 
 

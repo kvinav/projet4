@@ -3,6 +3,7 @@
 namespace Louvre\LouvreBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -20,8 +21,16 @@ class TicketType extends AbstractType
         $builder
             ->add('name',       TextType::class)
             ->add('surname',    TextType::class)
-            ->add('country',    CountryType::class)
-            ->add('dateOfBirth',TextType::class)
+            ->add('country',    CountryType::class, array(
+                'label' => 'Pays',
+
+            ))
+            ->add('dateOfBirth',BirthdayType::class, array(
+                'label' => 'Date de naissance',
+                'widget' => 'single_text',
+                'format' => 'dd/MM/yyyy',
+                'placeholder'=> 'Date de naissance',
+            ))
             ->add('discount',   CheckboxType::class, array(
                 'label'    => 'Tarif réduit ?',
                 'required' => false,
