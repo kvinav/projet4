@@ -10,6 +10,7 @@ namespace Louvre\LouvreBundle\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Louvre\LouvreBundle\Entity\Booking;
+use Louvre\LouvreBundle\Entity\Ticket;
 use Louvre\LouvreBundle\Form\BookingType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -46,7 +47,7 @@ class LouvreController extends Controller
     {
         $booking = new Booking();
         $form   = $this->get('form.factory')->create(BookingType::class, $booking);
-        
+
 
 
         if ($request->isMethod('POST')) {
@@ -57,6 +58,13 @@ class LouvreController extends Controller
 
             if ($form->handleRequest($request)->isValid()){
                 $booking->setType('Demi-journée');
+                $bookingService = $this->container->get('louvre_louvre.booking');
+                foreach ($booking->getTickets() as $ticket) {
+                    $dateOfBirth = $ticket->getDateOfBirth();
+                    $age = $bookingService->calculateAge($dateOfBirth);
+                    $ticket->setAge($age);
+                }
+
                 $session->getFlashBag()->add('info', 'Les billets ont bien été enregistrés, vous pouvez procéder au paiement.');
 
 

@@ -61,7 +61,20 @@ class Ticket
      *
      * @ORM\Column(name="Discount", type="boolean")
      */
-    private $discount = false;
+    private $discount;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="age", type="integer")
+     */
+    private $age;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="priceTicket", type="integer")
+     */
+    private $priceTicket;
 
     /**
      * @ORM\ManyToOne(targetEntity="Louvre\LouvreBundle\Entity\Booking", inversedBy="tickets")
@@ -222,4 +235,52 @@ class Ticket
         return $this->booking;
     }
 
+
+    /**
+     * Set age.
+     *
+     * @param int $age
+     *
+     * @return Ticket
+     */
+    public function setAge($age)
+    {
+        $this->age = $age;
+
+        return $this;
+    }
+
+    /**
+     * Get age.
+     *
+     * @return int
+     */
+    public function getAge()
+    {
+        return $this->age;
+    }
+
+    /**
+     * Set priceTicket.
+     *
+     * @param int $priceTicket
+     *
+     * @return Ticket
+     */
+    public function setPriceTicket($priceTicket)
+    {
+        $this->priceTicket = $priceTicket;
+
+        return $this;
+    }
+
+    /**
+     * Get priceTicket.
+     *
+     * @return int
+     */
+    public function getPriceTicket()
+    {
+        return $this->priceTicket;
+    }
 }
