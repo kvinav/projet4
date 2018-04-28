@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Louvre\LouvreBundle\Validator\HalfdayConstraint;
+use Louvre\LouvreBundle\Validator\ClosedDaysConstraint;
 
 /**
  * Booking
@@ -38,6 +39,7 @@ class Booking
      * @ORM\Column(name="dateVisit", type="datetime")
      * @Assert\Date(message="Merci de renseigner une date valide")
      * @Assert\GreaterThanOrEqual("today", message="Vous ne pouvez pas commander à une date antérieure")
+     * @ClosedDaysConstraint()
      */
     private $dateVisit;
 
