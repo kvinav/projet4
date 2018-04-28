@@ -31,12 +31,12 @@ class BookingService
         $bookingDay = $dateBooking->format('d');
 
 
-            $age = ($birthYear - $bookingYear);
+            $age = ($bookingYear - $birthYear);
             if( ($bookingMonth - $birthMonth) > 0 )
             {
-                $age = ($age - 1);
+                $age = $age;
             }
-            if( ($bookingMonth - $birthMonth) == 0 && ($bookingDay - $birthDay) > 0 )
+            if( ($bookingMonth - $birthMonth) == 0 && ($bookingDay - $birthDay) < 0 )
             {
                 $age = ($age - 1);
             }
@@ -93,22 +93,12 @@ class BookingService
 
             $totalPrice += $ticket->getPriceTicket();
 
-            return $totalPrice;
         }
 
-
-
-
-
-
-
-
-
-
-
+        return $totalPrice;
 
 
     }
 
-}
+
 }

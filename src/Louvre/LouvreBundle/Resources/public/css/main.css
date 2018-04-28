@@ -579,3 +579,17 @@ input:focus::-webkit-input-placeholder, input:valid::-webkit-input-placeholder {
     visibility: visible !important;
 }
 
+/*PAYMENT CSS*/
+
+#tickets_table {
+    border: solid black 1px;
+    border-collapse: collapse;
+}
+#tickets_table td{
+    border: solid black 1px;
+}
+#tickets_table th{
+    border: solid black 1px;
+}
+
+

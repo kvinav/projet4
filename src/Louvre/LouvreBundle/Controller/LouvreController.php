@@ -63,12 +63,17 @@ class LouvreController extends Controller
                     $dateOfBirth = $ticket->getDateOfBirth();
                     $age = $bookingService->calculateAge($dateOfBirth);
                     $ticket->setAge($age);
+
                 }
+                $price = $bookingService->calculatePrice($booking);
+                $booking->setPrice($price);
 
                 $session->getFlashBag()->add('info', 'Les billets ont bien été enregistrés, vous pouvez procéder au paiement.');
 
 
-                return $this->redirectToRoute('payment');
+                return $this->redirectToRoute('payment', array(
+                    'price' => $price,
+                ));
 
             }
         }
@@ -85,8 +90,12 @@ class LouvreController extends Controller
     public function paymentAction(Request $request)
     {
 
+        $session = new Session();
+        $booking = $session->get('booking');
 
-        return $this->render('LouvreLouvreBundle:Default:payment.html.twig');
+        return $this->render('LouvreLouvreBundle:Default:payment.html.twig', array(
+            'booking' => $booking,
+        ));
     }
 
 }
