@@ -94,6 +94,19 @@ class LouvreController extends Controller
 
         $session = new Session();
         $booking = $session->get('booking');
+        $validNumberService = $this->container->get('louvre_louvre.validNumber');
+        $todayDate = $booking->getDateVisit();
+        $totalTickets = $validNumberService->getTotalTickets($todayDate);
+
+
+        if ($totalTickets > 1000) {
+            $session->getFlashBag()->add(
+                'notice',
+                'Les réservations sont complètes pour ce jour là'
+            );
+            return $this->redirectToRoute('order');
+
+        }
 
         return $this->render('LouvreLouvreBundle:Default:payment.html.twig', array(
             'booking' => $booking,
@@ -138,8 +151,12 @@ class LouvreController extends Controller
      */
     public function resumeAction()
     {
+
         $session = new Session();
         $booking = $session->get('booking');
+
+
+
         return $this->render('LouvreLouvreBundle:Default:resume.html.twig', array(
             'booking' => $booking,
         ));

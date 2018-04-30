@@ -10,9 +10,11 @@ namespace Louvre\LouvreBundle\Services;
 use Louvre\LouvreBundle\Entity\Booking;
 use Louvre\LouvreBundle\Entity\Ticket;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Doctrine\ORM\EntityManagerInterface;
 
 class BookingService
 {
+
     // Calcul de l'age à partir de la date de naissance
     public function calculateAge($booking)
     {
@@ -128,6 +130,28 @@ class BookingService
 
 
     }
+
+
+    public function getTotalTickets($day)
+    {
+        $session = new Session();
+        $booking = $session->get('booking');
+        $quantityPerDay = 0;
+        foreach ($booking->getTickets() as $ticket) {
+            $quantityPerDay++;
+        }
+
+        $repository = $this->em->getRepository('LouvreLouvreBundle:Ticket');
+        $tickets = $repository->findBy(array('dateVisit' => $day));
+        $quantity = 0;
+        foreach ($tickets as $ticket) {
+            $quantity++;
+        }
+
+       $totalTickets = $quantityPerDay + $quantity;
+        return $totalTickets;
+    }
+
 
 
 }

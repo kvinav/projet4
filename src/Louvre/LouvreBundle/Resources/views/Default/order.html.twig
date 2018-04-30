@@ -5,7 +5,15 @@
 {% block body %}
     <h2>Commande de billets</h2>
     <div id="containerhome">
-<div id="form">
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+
+            <div class="alert alert-success">
+                {{ flashMessage }}
+            </div>
+
+        {% endfor %}
+
+        <div id="form">
 
             {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
