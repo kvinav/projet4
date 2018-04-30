@@ -36,7 +36,10 @@ class BookingType extends AbstractType
             ))
             ->add('email',      EmailType::class)
             ->add('tickets',     CollectionType::class, array(
-                'entry_type' => TicketType::class
+                'entry_type' => TicketType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
             ))
             ->add('save',       SubmitType::class);
     }/**

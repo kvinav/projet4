@@ -1,0 +1,21 @@
+{% extends "LouvreLouvreBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Récapitulatif{% endblock %}
+
+{% block body %}
+<h2>Récapitulatif de la commande</h2>
+
+<div id="resume">
+<p>Vous avez réservé des billets pour un montant total de {{ booking.price }} euros.</p>
+<p>Votre date de visite est réservée pour le {{ booking.dateVisit|date("d/m/Y") }}.</p>
+    <p>Un email récapitulatif vient de vous être envoyé. Il vous servira de ticket à l'entrée du musée.</p></br></br>
+    <p>Merci de votre visite,</p></br>
+    <p id="signature">L'équipe du Musée du Louvre</p>
+</div>
+
+
+
+{% endblock %}
+
+
+

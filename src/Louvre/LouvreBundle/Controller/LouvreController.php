@@ -46,29 +46,31 @@ class LouvreController extends Controller
     public function orderAction(Request $request)
     {
         $booking = new Booking();
+
         $form   = $this->get('form.factory')->create(BookingType::class, $booking);
+        $form->handleRequest($request);
 
 
+        if ($form->isSubmitted()) {
 
-        if ($request->isMethod('POST')) {
 
              $session = $request->getSession();
              $booking = $form->getData();
              $session->set('booking', $booking);
 
-            if ($form->handleRequest($request)->isValid()){
-                $booking->setType('Demi-journée');
-                $bookingService = $this->container->get('louvre_louvre.booking');
-                foreach ($booking->getTickets() as $ticket) {
-                    $dateOfBirth = $ticket->getDateOfBirth();
-                    $age = $bookingService->calculateAge($dateOfBirth);
-                    $ticket->setAge($age);
 
-                }
+            if ($form->isValid()){
+
+                $bookingService = $this->container->get('louvre_louvre.booking');
+                $bookingService->calculateAge($booking);
+
+
+
                 $price = $bookingService->calculatePrice($booking);
                 $booking->setPrice($price);
 
                 $session->getFlashBag()->add('info', 'Les billets ont bien été enregistrés, vous pouvez procéder au paiement.');
+
 
 
                 return $this->redirectToRoute('payment', array(
@@ -96,6 +98,52 @@ class LouvreController extends Controller
         return $this->render('LouvreLouvreBundle:Default:payment.html.twig', array(
             'booking' => $booking,
         ));
+    }
+
+    /**
+     * @Route("/checkout", name="order_checkout", methods="POST")
+     */
+    public function checkoutAction(Request $request)
+    {
+        $session = new Session();
+        $booking = $session->get('booking');
+        $amount = $booking->getPrice();
+
+        \Stripe\Stripe::setApiKey("sk_test_qAyRDTaNGJTzEnxhPHrBsvm1");
+
+        // Get the credit card details submitted by the form
+        $token = $_POST['stripeToken'];
+
+
+        // Create a charge: this will charge the user's card
+        try {
+            $charge = \Stripe\Charge::create(array(
+                "amount" => $amount*100, // Amount in cents
+                "currency" => "eur",
+                "source" => $token,
+                "description" => "Billetterie Louvre"
+            ));
+            $this->addFlash("success","Bravo ça marche !");
+            return $this->redirectToRoute("resume");
+        } catch(\Stripe\Error\Card $e) {
+
+            $this->addFlash("error","Snif ça marche pas :(");
+            return $this->redirectToRoute("order_checkout");
+            // The card has been declined
+        }
+    }
+
+    /**
+     * @Route("/resume", name="resume")
+     */
+    public function resumeAction()
+    {
+        $session = new Session();
+        $booking = $session->get('booking');
+        return $this->render('LouvreLouvreBundle:Default:resume.html.twig', array(
+            'booking' => $booking,
+        ));
+
     }
 
 }

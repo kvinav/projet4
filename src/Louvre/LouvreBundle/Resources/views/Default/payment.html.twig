@@ -27,7 +27,7 @@
                 <td>{{ ticket.name }}</td>
                 <td>{{ ticket.surname }}</td>
                 <td>{{ ticket.age }}</td>
-                <td>{{ ticket.discount }}</td>
+                <td>{% if ticket.discount == true %}<p>Oui</p>{% else %}<p>Non</p>{% endif %}</td>
                 <td>{{ ticket.priceTicket }}</td>
 
             </tr>
@@ -36,6 +36,19 @@
         </table>
 
         <p>Prix total de la commande : {{ booking.price }}</p>
+
+        <form action="{{ path('order_checkout') }}" method="POST">
+            <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="pk_test_YyJYkgu1VfUxiveZoEb4Ru3z"
+                    data-amount="{{ booking.price }}00"
+                    data-name="Billetterie Louvre"
+                    data-description="Widget"
+                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                    data-locale="auto"
+                    data-currency="eur">
+            </script>
+        </form>
 
 
     </div>

@@ -271,7 +271,7 @@ footer i {
     animation: rotate 0.5s;
 }
 
-@-webkit-keyframes {
+@-webkit-keyframes rotate {
     from {
         transform: rotate(0deg);
     }
@@ -362,8 +362,8 @@ footer i {
 .btngoto {
     padding: 8px 16px;
     cursor: pointer;
-    border: 1px solid #318CE7;
-    background: linear-gradient(90deg, #318CE7 50%, #318CE7 50%);
+    border: 1px solid #000000;
+    background: linear-gradient(90deg, #000000 50%, #000000 50%);
     -webkit-background-clip: text;
     position: relative;
     color: black;
@@ -379,7 +379,7 @@ footer i {
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(90deg, #318CE7 50%, transparent 0%);
+    background: linear-gradient(90deg, #000000 50%, transparent 0%);
     z-index: -1;
 
 }
@@ -511,7 +511,7 @@ footer i {
 #type select {
     width: 150px;
     height: 30px;
-    border: solid 1px #318CE7;
+    border: solid 1px #000000;
 }
 
 
@@ -519,7 +519,7 @@ footer i {
 #louvre_louvrebundle_booking_tickets_0_country {
     width: 150px;
     height: 30px;
-    border: solid 1px #318CE7;
+    border: solid 1px #000000;
     margin-left: 20px;
     margin-top: 10px;
 
@@ -557,13 +557,13 @@ input {
     width: 200px;
     border: none;
     padding: 10px 0;
-    border-bottom: solid 1px #318CE7;
+    border-bottom: solid 1px #000000;
     transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #318CE7 4%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #000000 4%);
     background-position: -200px 0;
     background-size: 200px 100%;
     background-repeat: no-repeat;
-    color: #318CE7;
+    color: #000000;
     font-size: 14px;
 }
 input:focus, input:valid {
@@ -572,7 +572,7 @@ input:focus, input:valid {
     background-position: 0 0;
 }
 input:focus::-webkit-input-placeholder, input:valid::-webkit-input-placeholder {
-    color: #318CE7;
+    color: #000000;
     font-size: 11px;
     -webkit-transform: translateY(-30px);
     transform: translateY(-30px);
@@ -591,5 +591,12 @@ input:focus::-webkit-input-placeholder, input:valid::-webkit-input-placeholder {
 #tickets_table th{
     border: solid black 1px;
 }
-
+/*RESUME*/
+#resume{
+    text-align: center;
+}
+#signature {
+    text-align: right;
+    margin-right: 20%;
+}
 

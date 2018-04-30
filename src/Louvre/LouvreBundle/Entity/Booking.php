@@ -13,6 +13,7 @@ use Louvre\LouvreBundle\Validator\ClosedDaysConstraint;
  *
  * @ORM\Table(name="booking")
  * @ORM\Entity(repositoryClass="Louvre\LouvreBundle\Repository\BookingRepository")
+ * @HalfdayConstraint()
  */
 class Booking
 {
@@ -47,7 +48,6 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255)
-     * @HalfdayConstraint()
      */
     private $type;
 

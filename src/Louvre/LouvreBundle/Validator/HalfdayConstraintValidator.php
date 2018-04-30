@@ -20,20 +20,21 @@ class HalfdayConstraintValidator extends ConstraintValidator
     public function validate($booking, $constraint)
     {
 
-            $session = new Session();
+           /* $session = new Session();*/
 
 
-                if ($booking = $session->get('booking') !== null) {
-                    $booking = $session->get('booking');
+                if ($booking !== null) {
+
+                    // $booking = $session->get('booking');
                     $dateVisit = $booking->getDateVisit()->format('Y-m-d');
-                    $dateBooking = $booking->getDateBooking()->format('Y-m-d');
-                    $timeBooking = $booking->getDateBooking()->format('H');
+                    $dateBooking = new \DateTime();
+                    $dateBookingFormat = $dateBooking->format('Y-m-d');
+                    $timeBooking = $dateBooking->format('H');
                     $type = $booking->getType();
 
 
-                    if ($timeBooking >= 14 && $type == 'Journée' && ($dateVisit === $dateBooking)) {
+                    if ($timeBooking >= 12 && $type == 'Journée' && ($dateVisit === $dateBookingFormat)) {
                         $this->context->buildViolation($constraint->message)->atPath('type')->addViolation();
-                        $session->remove('booking');
 
                     }
                 }

@@ -16,4 +16,9 @@ use Symfony\Component\Validator\Constraint;
 class HalfdayConstraint extends Constraint
 {
     public $message = "Vous ne pouvez pas réserver de billets journée pour le jour même après 14h";
+
+    public function getTargets()
+    {
+        return self::CLASS_CONSTRAINT;
+    }
 }
