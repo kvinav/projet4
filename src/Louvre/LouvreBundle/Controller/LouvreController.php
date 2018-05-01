@@ -121,24 +121,13 @@ class LouvreController extends Controller
         $session = new Session();
         $booking = $session->get('booking');
         $amount = $booking->getPrice();
-
-        \Stripe\Stripe::setApiKey("sk_test_qAyRDTaNGJTzEnxhPHrBsvm1");
-
-
         $token = $_POST['stripeToken'];
-
-
+        $stripeService = $this->container->get('louvre_louvre.stripe');
 
         try {
-            $charge = \Stripe\Charge::create(array(
-                "amount" => $amount*100,
-                "currency" => "eur",
-                "source" => $token,
-                "description" => "Billetterie Louvre"
-            ));
+            $stripeService->stripePayment($token, $amount);
             return $this->redirectToRoute("resume");
         } catch(\Stripe\Error\Card $e) {
-
 
             return $this->redirectToRoute("order_checkout");
 
