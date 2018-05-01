@@ -124,36 +124,48 @@ class LouvreController extends Controller
 
         \Stripe\Stripe::setApiKey("sk_test_qAyRDTaNGJTzEnxhPHrBsvm1");
 
-        // Get the credit card details submitted by the form
+
         $token = $_POST['stripeToken'];
 
 
-        // Create a charge: this will charge the user's card
+
         try {
             $charge = \Stripe\Charge::create(array(
-                "amount" => $amount*100, // Amount in cents
+                "amount" => $amount*100,
                 "currency" => "eur",
                 "source" => $token,
                 "description" => "Billetterie Louvre"
             ));
-            $this->addFlash("success","Bravo ça marche !");
             return $this->redirectToRoute("resume");
         } catch(\Stripe\Error\Card $e) {
 
-            $this->addFlash("error","Snif ça marche pas :(");
+
             return $this->redirectToRoute("order_checkout");
-            // The card has been declined
+
         }
     }
 
     /**
      * @Route("/resume", name="resume")
      */
-    public function resumeAction()
+    public function resumeAction(Request $request)
     {
 
         $session = new Session();
         $booking = $session->get('booking');
+        $em = $this->getDoctrine()->getManager();
+        $randomCode = md5(uniqid(rand(), true));
+
+        $booking->setReservationcode($randomCode);
+        $email = $booking->getEmail();
+        $bookingService = $this->container->get('louvre_louvre.booking');
+        $bookingService->sendMail($email);
+
+        $em->persist($booking);
+        foreach ($booking->getTickets() as $ticket){
+            $em->persist($ticket);
+        }
+        $em->flush();
 
 
 

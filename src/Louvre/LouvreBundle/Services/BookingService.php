@@ -9,12 +9,18 @@ namespace Louvre\LouvreBundle\Services;
 
 use Louvre\LouvreBundle\Entity\Booking;
 use Louvre\LouvreBundle\Entity\Ticket;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\ORM\EntityManagerInterface;
 
 class BookingService
 {
 
+    public function __construct(\Swift_Mailer $mailer, $templating)
+    {
+        $this->mailer = $mailer;
+        $this->templating = $templating;
+    }
     // Calcul de l'age à partir de la date de naissance
     public function calculateAge($booking)
     {
@@ -151,6 +157,25 @@ class BookingService
        $totalTickets = $quantityPerDay + $quantity;
         return $totalTickets;
     }
+
+    public function sendMail($email)
+    {
+
+        $session = new Session();
+        $booking = $session->get('booking');
+        $message = (new \Swift_Message('E-Billet'))
+            ->setFrom('kavignonpro@gmail.com')
+            ->setTo($email)
+            ->setBody(
+                $this->templating->render('LouvreLouvreBundle:Default:mail.html.twig',  array('booking' => $booking)
+                ),
+                'text/html');
+
+        $this->mailer->send($message);
+
+
+    }
+
 
 
 

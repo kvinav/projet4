@@ -65,6 +65,13 @@ class Booking
      * @ORM\Column(name="price", type="integer")
      */
     private $price;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="reservationCode", type="string", length=255)
+     */
+    private $reservationCode;
     /**
      * @ORM\OneToMany(targetEntity="Louvre\LouvreBundle\Entity\Ticket", mappedBy="booking")
      * @Assert\Valid()
@@ -244,5 +251,29 @@ class Booking
     public function getDateVisit()
     {
         return $this->dateVisit;
+    }
+
+    /**
+     * Set reservationCode.
+     *
+     * @param string $reservationCode
+     *
+     * @return Booking
+     */
+    public function setReservationCode($reservationCode)
+    {
+        $this->reservationCode = $reservationCode;
+
+        return $this;
+    }
+
+    /**
+     * Get reservationCode.
+     *
+     * @return string
+     */
+    public function getReservationCode()
+    {
+        return $this->reservationCode;
     }
 }

@@ -1,0 +1,35 @@
+<img src="{{ asset('bundles/louvrelouvre/images/logomail.png') }}" alt="logo musée louvre"> - Musée du Louvre </br></br>
+<strong>Bonjour</strong> ,
+
+Nous vous confirmons votre visite du musée du Louvre le {{ booking.dateVisit|date('d/m/Y') }} pour la {{ booking.type }}.</br>
+
+Le montant total de vos billets est de : {{ booking.price }} euros.</br>
+
+<p>Liste des billets commandés:</p>
+<table>
+    <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Age</th>
+        <th>Réduction</th>
+        <th>Prix</th>
+    </tr>
+
+    {% for ticket in booking.tickets %}
+
+        <tr>
+            <td>{{ ticket.name }}</td>
+            <td>{{ ticket.surname }}</td>
+            <td>{{ ticket.age }}</td>
+            <td>{% if ticket.discount == true %}<p>Oui</p>{% else %}<p>Non</p>{% endif %}</td>
+            <td>{{ ticket.priceTicket }}</td>
+
+        </tr>
+    {% endfor %}
+</table></br></br>
+
+Code de réservation : {{ booking.reservationCode }}</br>
+
+
+
+Merci de votre visite et à bientot.

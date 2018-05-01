@@ -1,6 +1,7 @@
 services:
     louvre_louvre.booking:
         class: Louvre\LouvreBundle\Services\BookingService
+        arguments: ['@mailer','@templating']
     louvre_louvre.validNumber:
         class: Louvre\LouvreBundle\Services\ValidNumberService
         arguments: ['@doctrine.orm.entity_manager']

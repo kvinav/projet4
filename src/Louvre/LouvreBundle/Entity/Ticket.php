@@ -78,9 +78,10 @@ class Ticket
 
     /**
      * @ORM\ManyToOne(targetEntity="Louvre\LouvreBundle\Entity\Booking", inversedBy="tickets")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="booking_id", referencedColumnName="id")
      */
     private $booking;
+
     /**
      * Get id.
      *
