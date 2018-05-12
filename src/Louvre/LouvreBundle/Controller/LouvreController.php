@@ -122,6 +122,7 @@ class LouvreController extends Controller
         $booking = $session->get('booking');
         $amount = $booking->getPrice();
         $token = $_POST['stripeToken'];
+        dump($token); die;
         $stripeService = $this->container->get('louvre_louvre.stripe');
 
         try {
