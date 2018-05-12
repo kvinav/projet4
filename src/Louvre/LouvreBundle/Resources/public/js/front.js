@@ -41,29 +41,22 @@ $(function () {
     $('.emaillabel').css('display', 'none');
     $('#form button').addClass('btngoto');
 
-    $($('#louvre_louvrebundle_booking_tickets_0 label')[0]).css("display", "none");
-    $($('#louvre_louvrebundle_booking_tickets_0 label')[1]).css("display", "none");
-    $($('#louvre_louvrebundle_booking_tickets_0 label')[3]).css("display", "none");
-
-
     $($('#form_tickets label')[0]).css("display", "none");
     $('#louvre_louvrebundle_booking_dateVisit').attr("placeholder", "Date de la visite");
     $('#louvre_louvrebundle_booking_email').attr("placeholder", "Email");
 
 
-    $('#louvre_louvrebundle_booking_tickets_0_name').attr("placeholder", "Nom");
-    $('#louvre_louvrebundle_booking_tickets_0_surname').attr("placeholder", "Prénom");
-    $('#louvre_louvrebundle_booking_tickets_0_dateOfBirth').attr("placeholder", "Date de naissance");
-
-
     $('#louvre_louvrebundle_booking_tickets_0_country').val("FR");
+    $($('#louvre_louvrebundle_booking_tickets label')[0]).text('Ticket n°1');
+
 
 
 
     // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
     var $container = $('div#louvre_louvrebundle_booking_tickets');
     // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
-    var index = $container.find(':input').length;
+    var index = $container.find(':input').length / 5;
+
     // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
     $('#add_ticket').click(function(e) {
         addTicket($container);
@@ -76,7 +69,12 @@ $(function () {
 
     // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un
     if (index == 0) {
+        $container.attr('data-prototype')
+            .replace(/__name__label__/g, 'Ticket n°1')
+            .replace(/__name__/g,        0)
+        ;
         addTicket($container);
+
     } else {
         // S'il existe déjà des tickets, on ajoute un lien de suppression pour chacun d'entre eux
         $container.children('div').each(function() {
@@ -89,8 +87,8 @@ $(function () {
         // - le texte "__name__label__" qu'il contient par le label du champ
         // - le texte "__name__" qu'il contient par le numéro du champ
         var template = $container.attr('data-prototype')
-            .replace(/__name__label__/g, 'Ticket n° ' + (index+1))
-            .replace(/__name__/g,        index)
+            .replace(/__name__label__/g, 'Ticket n° ' + (index + 1))
+            .replace(/__name__/g,        0)
         ;
         // On crée un objet jquery qui contient ce template
         var $prototype = $(template);

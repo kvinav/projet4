@@ -41,7 +41,9 @@ class BookingType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
             ))
-            ->add('save',       SubmitType::class);
+            ->add('save',       SubmitType::class, array(
+                'label' => 'Valider',
+            ));
     }/**
      * {@inheritdoc}
      */
