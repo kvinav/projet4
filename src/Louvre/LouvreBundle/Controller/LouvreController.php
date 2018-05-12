@@ -94,6 +94,9 @@ class LouvreController extends Controller
 
         $session = new Session();
         $booking = $session->get('booking');
+        if ($booking === null){
+            return $this->redirectToRoute("home");
+        }
         $validNumberService = $this->container->get('louvre_louvre.validNumber');
         $todayDate = $booking->getDateVisit();
         $totalTickets = $validNumberService->getTotalTickets($todayDate);
@@ -114,15 +117,19 @@ class LouvreController extends Controller
     }
 
     /**
-     * @Route("/checkout", name="order_checkout", methods="POST")
+     * @Route("/checkout", name="order_checkout")
      */
     public function checkoutAction(Request $request)
     {
         $session = new Session();
         $booking = $session->get('booking');
+        if ($booking === null){
+            return $this->redirectToRoute("home");
+        }
+        // if booking null -> rediriger page accueil
         $amount = $booking->getPrice();
         $token = $_POST['stripeToken'];
-        dump($token); die;
+
         $stripeService = $this->container->get('louvre_louvre.stripe');
 
         try {
@@ -143,6 +150,9 @@ class LouvreController extends Controller
 
         $session = new Session();
         $booking = $session->get('booking');
+        if ($booking === null){
+            return $this->redirectToRoute("home");
+        }
         $em = $this->getDoctrine()->getManager();
         $randomCode = md5(uniqid(rand(), true));
 
@@ -152,11 +162,8 @@ class LouvreController extends Controller
         $bookingService->sendMail($email);
 
         $em->persist($booking);
-        foreach ($booking->getTickets() as $ticket){
-            $em->persist($ticket);
-        }
         $em->flush();
-
+        $session->remove('booking');
 
 
         return $this->render('LouvreLouvreBundle:Default:resume.html.twig', array(

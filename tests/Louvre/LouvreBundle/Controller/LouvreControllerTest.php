@@ -9,6 +9,7 @@
 namespace Tests\Louvre\LouvreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\Request;
 
 class LouvreControllerTestControllerTest extends WebTestCase
 {
@@ -16,7 +17,7 @@ class LouvreControllerTestControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/');
+        $crawler = $client->request(Request::METHOD_GET, '/');
 
         $this->assertGreaterThan(
             0,
@@ -28,7 +29,7 @@ class LouvreControllerTestControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/notice');
+        $crawler = $client->request(Request::METHOD_GET, '/notice');
 
         $this->assertGreaterThan(
             0,
@@ -40,7 +41,7 @@ class LouvreControllerTestControllerTest extends WebTestCase
     {
         $client = static::createClient();
         $client->followRedirects(true);
-        $crawler = $client->request('GET', '/order');
+        $crawler = $client->request(Request::METHOD_GET, '/order');
         $form = $crawler->selectButton('Valider')->form();
         $values = array(
             'order' => array(

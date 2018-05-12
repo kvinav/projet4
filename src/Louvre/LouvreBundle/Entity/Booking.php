@@ -73,7 +73,7 @@ class Booking
      */
     private $reservationCode;
     /**
-     * @ORM\OneToMany(targetEntity="Louvre\LouvreBundle\Entity\Ticket", mappedBy="booking")
+     * @ORM\OneToMany(targetEntity="Louvre\LouvreBundle\Entity\Ticket", mappedBy="booking", cascade={"persist", "remove"})
      * @Assert\Valid()
      */
     private $tickets;
@@ -82,6 +82,7 @@ class Booking
     {
         $this->dateBooking = new \Datetime();
         $this->tickets = new ArrayCollection();
+        //Tester suppression
         $ticket = new Ticket();
         $this->addTicket($ticket);
     }
@@ -203,6 +204,7 @@ class Booking
     public function addTicket(\Louvre\LouvreBundle\Entity\Ticket $ticket)
     {
         $this->tickets[] = $ticket;
+        $ticket->setBooking($this);
 
         return $this;
     }

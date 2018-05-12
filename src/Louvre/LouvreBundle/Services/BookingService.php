@@ -16,15 +16,20 @@ use Doctrine\ORM\EntityManagerInterface;
 class BookingService
 {
 
-    public function __construct(\Swift_Mailer $mailer, $templating)
+    protected $mailer;
+    protected $templating;
+    protected $calculAge;
+
+    public function __construct(\Swift_Mailer $mailer, $templating, CalculAge $calculAge)
     {
         $this->mailer = $mailer;
         $this->templating = $templating;
+        $this->calculAge = $calculAge;
     }
     // Calcul de l'age à partir de la date de naissance
     public function calculateAge($booking)
     {
-        $dateBooking = $booking->getDateBooking();
+        /*$dateBooking = $booking->getDateBooking();
 
         foreach ($booking->getTickets() as $ticket) {
             $dateOfBirth = $ticket->getDateOfBirth();
@@ -46,7 +51,9 @@ class BookingService
             $ticket->setAge($age);
         }
 
-            return $age;
+            return $age;*/
+
+        $this->calculAge->calculateAge($booking);
 
     }
 

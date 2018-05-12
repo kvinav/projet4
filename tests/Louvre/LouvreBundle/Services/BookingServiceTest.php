@@ -7,44 +7,39 @@
  */
 namespace Tests\Louvre\LouvreBundle\Services;
 
-use Louvre\LouvreBundle\Services\BookingService;
+use Louvre\LouvreBundle\Entity\Booking;
+use Louvre\LouvreBundle\Services\CalculAge;
 use PHPUnit\Framework\TestCase;
 
 class BookingServiceTest extends TestCase
 {
+    protected $booking;
 
-    public function testCalculatePrice()
+    public function setUp()
     {
-        $booking = array(
-            'order' => array(
-                'dateVisit'   => array(
-                    'day'   => 30,
-                    'month' => 01,
-                    'year'  => 2020,
-                ),
-                'type' => 'Journée',
-                'email' => 'kavignonpro@gmail.com',
-                'tickets'     => array(
-                    'Ticket n°1' => array(
-                        'name'      => 'Avignon',
-                        'surname' => 'Kevin',
-                        'country'   => 'FR',
-                        'discount' => true,
-                        'dateOfBirth' => array(
-                            'day'    => 13,
-                            'month'  => 02,
-                            'year'   => 1994,
-                        ),
-                    ),
-                ),
-            )
-        );
-        $bookingService = new BookingService($booking);
+        parent::setUp();
 
-        $result = $bookingService->calculatePrice($booking);
+        $dateVisit = new \DateTime('2020-01-30');
+        $dateNaissance = new \DateTime('1994-02-13');
 
 
-        $this->assertEquals(10, $result);
+        $this->booking = new Booking();
+        $this->booking->setDateVisit($dateVisit);
+        $ticket = $this->booking->getTickets()[0];
+        $ticket->setDateOfBirth($dateNaissance);
+        $this->booking->addTicket($ticket);
+        $calculAge = new CalculAge();
+
+        $calculAge->calculateAge($this->booking);
+
+    }
+
+    public function testCalculateAge()
+    {
+
+        $ticket = $this->booking->getTickets()[0];
+
+        $this->assertEquals(24, $ticket->getAge());
 
     }
 

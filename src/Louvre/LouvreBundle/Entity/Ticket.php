@@ -77,7 +77,7 @@ class Ticket
     private $priceTicket;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Louvre\LouvreBundle\Entity\Booking", inversedBy="tickets")
+     * @ORM\ManyToOne(targetEntity="Louvre\LouvreBundle\Entity\Booking", inversedBy="tickets", cascade="persist")
      * @ORM\JoinColumn(name="booking_id", referencedColumnName="id")
      */
     private $booking;
