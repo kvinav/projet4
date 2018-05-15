@@ -3,7 +3,7 @@ $(function () {
     /* MENU */
 
     var listmenuheader = $("#listmenuheader");
-    listmenuheader.hide();
+
 
     $(".menu").on('click', function() {
         listmenuheader.toggle(200);

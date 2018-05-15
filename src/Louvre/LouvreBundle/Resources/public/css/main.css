@@ -23,6 +23,43 @@ label .menu {
     box-shadow: 0 0 0 0 #f4f4f4, 0 0 0 0 #f4f4f4;
     cursor: pointer;
 }
+
+@media (max-width: 1024px) {
+
+    html {
+        overflow-x : hidden;
+    }
+    #form {
+        display: flex;
+        flex-direction: column!important;
+    }
+
+    .ticketinput {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap!important;
+        width: 100%!important;
+
+    }
+    #louvre_louvrebundle_booking_tickets_0 {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap!important;
+        width: 100%!important;
+
+    }
+    #louvre_louvrebundle_booking_tickets_0_dateOfBirth {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap!important;
+        width: 100%!important;
+        margin-right: 20px;
+
+    }
+
+
+
+}
 label .hamburger {
     position: absolute;
     top: 135px;
@@ -45,6 +82,7 @@ label .hamburger:after, label .hamburger:before {
 }
 #listmenuheader {
     text-align: center;
+    display: none;
 }
 label .hamburger:before {
     top: -10px;
