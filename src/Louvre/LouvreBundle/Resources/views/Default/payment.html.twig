@@ -12,13 +12,13 @@
         {% endfor %}
 
         <p>Liste des billets commandés:</p>
-        <table id="tickets_table">
+        <table class="table">
             <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Age</th>
-                <th>Réduction</th>
-                <th>Prix</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Age</th>
+                <th scope="col">Réduction</th>
+                <th scope="col">Prix</th>
             </tr>
 
         {% for ticket in booking.tickets %}
@@ -49,6 +49,7 @@
                     data-currency="eur">
             </script>
         </form>
+        <br><br>
 
 
     </div>

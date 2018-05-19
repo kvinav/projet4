@@ -21,12 +21,24 @@ class TicketType extends AbstractType
         $builder
             ->add('name',       TextType::class, array(
                 'label' => 'Nom',
+                'attr' => array(
+                    'class' => 'form-control',
+
+                    ),
             ))
             ->add('surname',    TextType::class, array(
                 'label' => 'Prénom',
+                'attr' => array(
+                    'class' => 'form-control',
+
+                ),
             ))
             ->add('country',    CountryType::class, array(
                 'label' => 'Pays',
+                'attr' => array(
+                    'class' => 'form-control',
+
+                ),
 
             ))
             ->add('dateOfBirth',BirthdayType::class, array(
@@ -34,11 +46,20 @@ class TicketType extends AbstractType
                 'widget' => 'single_text',
                 'format' => 'dd/MM/yyyy',
                 'placeholder'=> 'Date de naissance',
+                'attr' => array(
+                    'class' => 'form-control',
+
+                ),
             ))
             ->add('discount',   CheckboxType::class, array(
                 'label'    => 'Tarif réduit ?',
                 'required' => false,
+                'attr' => array(
+                    'class' => 'form-control',
+
+                ),
                 ));
+
 
     }/**
      * {@inheritdoc}

@@ -43,6 +43,10 @@ class BookingType extends AbstractType
             ))
             ->add('save',       SubmitType::class, array(
                 'label' => 'Valider',
+                'attr' => array(
+                    'class' => 'btn btn-primary',
+                    'style' => 'width: 200px;',
+                ),
             ));
     }/**
      * {@inheritdoc}

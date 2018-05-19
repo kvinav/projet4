@@ -4,37 +4,57 @@
 
 {% block title %}{{ parent() }} - Accueil{% endblock %}
 {% block body %}
-    <h2>Bienvenue sur la billetterie du musée du Louvre</h2>
+    <h3 class="col-sm-10 offset-2">Bienvenue sur la billetterie du musée du Louvre</h3><br><br>
 
-    <div id="containerhome">
-        <div class="price price1">
-            <h3>Tarif normal</h3>
-            <p class="pricetag"><strong><span>16 <span id="eurosign">€</span></span></strong></p>
-            <p>Gratuit pour les moins de 4 ans.</p>
-
-        </div>
-        <div class="price price2">
-            <h3>Tarif enfant</h3>
-            <p class="pricetag"><strong><span>8 <span id="eurosign">€</span></span></strong></p>
-            <p>Enfants de 4 à 8 ans.</p>
-
-        </div>
-        <div class="price price3">
-            <h3>Tarif senior</h3>
-            <p class="pricetag"><strong><span>12 <span id="eurosign">€</span></span></strong></p>
-            <p>Personnes ayant 60 ans ou plus.</p>
+    <div id="containerhome" class="row">
+        <div class="col-sm-3">
+            <div class="card border-success mb-3" style="height: 300px;">
+                <div class="card-body">
+                    <h5 class="card-title">Tarif normal</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">16  €</h6>
+                    <p class="card-text">Gratuit pour les moins de 4 ans.
+                    </p>
+                </div>
+            </div>
 
         </div>
-        <div class="price price4">
-            <h3>Tarif réduit</h3>
-            <p class="pricetag"><strong><span>10 <span id="eurosign">€</span></span></strong></p>
-            <p>Etudiant, employé du musée, d’un service du Ministère de la Culture, militaire…*</p>
+        <div class="col-sm-3">
+            <div class="card border-success mb-3" style="height: 300px;">
+                <div class="card-body">
+                    <h5 class="card-title">Tarif enfant</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">8  €</h6>
+                    <p class="card-text">De 4 à 12 ans.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-3">
+            <div class="card border-success mb-3" style="height: 300px;">
+                <div class="card-body">
+                    <h5 class="card-title">Tarif senior</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">12  €</h6>
+                    <p class="card-text">A partir de 60 ans.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-3">
+            <div class="card border-success mb-3" style="height: 300px;">
+                <div class="card-body">
+                    <h5 class="card-title">Tarif réduitl</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">10  €</h6>
+                    <p class="card-text">Etudiant, employé du musée, d’un service du Ministère de la Culture, militaire…*
+                    </p>
+                </div>
+            </div>
 
         </div>
     </div>
 
+
     </br><p id="justificatif">* Un justificatif vous sera demandé à l'entrée du musée.</p><br><br>
-    <p id="text1">Le musée est ouvert tous les jours de 9h à 19h, sauf le mardi et les jours fériés.</p>
-    <p id="text2">Vous pouvez réserver des billets pour la journée, ou pour une demi-journée.</br> A partir de 14h, vous ne pouvez plus réserver de billets journée.<p>
-    <p id="divbtngoto"><a href="{{ path('order') }}"><button class="btngoto">Je réserve mon billet !</button></a><p>
+    <p class="col-sm-12">Le musée est ouvert tous les jours de 9h à 19h, sauf le mardi et les jours fériés.Vous pouvez réserver des billets pour la journée, ou pour une demi-journée.</br> A partir de 14h, vous ne pouvez plus réserver de billets journée.<p>
+    <p class="col-sm-12"><a href="{{ path('order') }}"><button class="btn btn-success">Je réserve mon billet !</button></a><p><br><br>
 {% endblock %}

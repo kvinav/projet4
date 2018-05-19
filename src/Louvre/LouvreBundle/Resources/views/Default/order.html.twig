@@ -13,7 +13,7 @@
 
         {% endfor %}
 
-        <div id="form">
+        <div class="form">
 
             {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
@@ -21,41 +21,42 @@
             {{ form_errors(form) }}
 
         <div id="form_booking">
-            <div id="dateVisit">
+            <div class="form-group">
                 {{ form_label(form.dateVisit, "Date de votre visite", {'label_attr': {'class': 'datevisitlabel'}}) }}
                 {{ form_errors(form.dateVisit) }}
 
-                    {{ form_widget(form.dateVisit, {'attr': {'class': 'datepicker'}}) }}
+                    {{ form_widget(form.dateVisit, {'attr': {'class': 'form-control'}}) }}
             </div>
-            <div id="type">
+            <div class="form-group">
                 {{ form_label(form.type, "Type de journée", {'label_attr': {'class': 'typelabel'}}) }}
                 {{ form_errors(form.type) }}
-                    {{ form_widget(form.type, {'attr': {'class': 'typeinput'}}) }}
+                    {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
             </div>
-            <div id="email">
+            <div class="form-group">
                 {{ form_label(form.email, "Votre adresse email", {'label_attr': {'class': 'emaillabel'}}) }}
                 {{ form_errors(form.email) }}
-                    {{ form_widget(form.email, {'attr': {'class': 'emailinput'}}) }}
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
             </div>
 
         </div>
         <div id="tickets_title"><h3>Billets</h3></div>
-        <div>
 
             {{ form_errors(form.tickets) }}
-            {{ form_widget(form.tickets, {'attr': {'class': 'ticketinput'}}) }}
+            {{ form_widget(form.tickets, {'attr': {'class': 'form'}}) }}
 
 
 
 
 
-        </div>
-    <button id="add_ticket" class="btngoto">Ajouter un billet</button>
+        </div><br>
+           <a href="#" class="btn btn-success" id="add_ticket">+</a><br><br>
 
 
-
+            <div class="col-sm-12">
             {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
-            {{ form_widget(form.save, {'attr': {'class': 'submitbtn'}}) }}
+            {{ form_widget(form.save) }}
+
+           </div><br><br>
 
 
             {# Génération automatique des champs pas encore écrits.

@@ -1,54 +1,12 @@
 $(function () {
 
-    /* MENU */
-
-    var listmenuheader = $("#listmenuheader");
 
 
-    $(".menu").on('click', function() {
-        listmenuheader.toggle(200);
-
-    });
-
-    /* ORDER FORM */
-
-    /* Visit date configuration */
-
-    var currentdate = new Date();
-    var currentmonth = currentdate.getMonth()+1;
-    if(currentmonth<10){
-        currentmonth='0'+currentmonth
-    }
-    var currentday = currentdate.getDate();
-    if(currentday<10){
-        currentday='0'+currentday
-    }
-    var currentyear = currentdate.getFullYear();
-
-    var today = currentday+'/'+currentmonth+'/'+currentyear;
-    var currenttime = new Date();
-    var hours = currenttime.getHours();
-
-
-
-    var pickeddate = $('#louvre_louvrebundle_booking_dateVisit').val();
-
-
-
-
-    $('.ticketinput div:nth-child(3)').css("font-size", "20px");
-    $('.datevisitlabel').css('display', 'none');
-    $('.emaillabel').css('display', 'none');
-    $('#form button').addClass('btngoto');
-
-    $($('#form_tickets label')[0]).css("display", "none");
-    $('#louvre_louvrebundle_booking_dateVisit').attr("placeholder", "Date de la visite");
-    $('#louvre_louvrebundle_booking_email').attr("placeholder", "Email");
+    $('input').addClass('form-control');
 
 
     $('#louvre_louvrebundle_booking_tickets_0_country').val("FR");
     $($('#louvre_louvrebundle_booking_tickets label')[0]).text('Ticket n°1');
-
 
 
 
@@ -72,6 +30,7 @@ $(function () {
         $container.attr('data-prototype')
             .replace(/__name__label__/g, 'Ticket n°1')
             .replace(/__name__/g,        0)
+            .replace()
         ;
         addTicket($container);
 
@@ -88,7 +47,8 @@ $(function () {
         // - le texte "__name__" qu'il contient par le numéro du champ
         var template = $container.attr('data-prototype')
             .replace(/__name__label__/g, 'Ticket n° ' + (index + 1))
-            .replace(/__name__/g,        0)
+            .replace(/__name__/g,        index)
+            .replace('<input', '<input class="form-control"')
         ;
         // On crée un objet jquery qui contient ce template
         var $prototype = $(template);
@@ -96,14 +56,14 @@ $(function () {
         addDeleteLink($prototype);
         // On ajoute le prototype modifié à la fin de la balise <div>
         $container.append($prototype);
-        $container.attr('id', 'form_tickets');
+        $container.attr('id', 'booking_tickets');
         // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
         index++;
     }
     // La fonction qui ajoute un lien de suppression d'un ticket
     function addDeleteLink($prototype) {
         // Création du lien
-        var $deleteLink = $('<a href="#" class="btngoto">Supprimer</a>');
+        var $deleteLink = $('<br><a href="#" class="btn btn-danger"><i class="material-icons">-</i></a>');
         // Ajout du lien
         $prototype.append($deleteLink);
         // Ajout du listener sur le clic du lien pour effectivement supprimer le lien

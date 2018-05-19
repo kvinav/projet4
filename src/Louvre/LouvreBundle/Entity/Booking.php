@@ -82,9 +82,7 @@ class Booking
     {
         $this->dateBooking = new \Datetime();
         $this->tickets = new ArrayCollection();
-        //Tester suppression
-        $ticket = new Ticket();
-        $this->addTicket($ticket);
+
     }
 
     /**
