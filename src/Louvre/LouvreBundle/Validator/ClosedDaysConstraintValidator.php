@@ -14,12 +14,10 @@ use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Louvre\LouvreBundle\Entity\Booking;
 
-
 class ClosedDaysConstraintValidator extends ConstraintValidator
 {
     public function validate($booking, $constraint)
     {
-
         $session = new Session();
 
 
@@ -32,11 +30,7 @@ class ClosedDaysConstraintValidator extends ConstraintValidator
             if ($closedDay == 0 || $closedDay == 2 || $publicHoliday == '01-05' || $publicHoliday == '01-10' || $publicHoliday == '25-12') {
                 $this->context->buildViolation($constraint->message)->atPath('type')->addViolation();
                 $session->remove('booking');
-
             }
         }
-
-
-
     }
 }

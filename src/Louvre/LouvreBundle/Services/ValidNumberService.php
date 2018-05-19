@@ -14,7 +14,6 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class ValidNumberService
 {
-
     private $em;
 
     public function __construct($em)
@@ -24,7 +23,6 @@ class ValidNumberService
 
     public function getTotalTickets($day)
     {
-
         $session = new Session();
         $booking = $session->get('booking');
         $quantityPerDay = 0;
@@ -43,6 +41,4 @@ class ValidNumberService
         $totalTickets = $quantityPerDay + $quantity;
         return $totalTickets;
     }
-
 }
-

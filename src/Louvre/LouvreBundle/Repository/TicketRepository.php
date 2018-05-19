@@ -2,7 +2,6 @@
 
 namespace Louvre\LouvreBundle\Repository;
 
-
 /**
  * TicketRepository
  *
@@ -11,5 +10,4 @@ namespace Louvre\LouvreBundle\Repository;
  */
 class TicketRepository extends \Doctrine\ORM\EntityRepository
 {
-
 }

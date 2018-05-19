@@ -82,7 +82,7 @@ class Booking
     {
         $this->dateBooking = new \Datetime();
         $this->tickets = new ArrayCollection();
-
+        $this->reservationCode =  md5(uniqid(rand(), true));
     }
 
     /**
@@ -93,20 +93,6 @@ class Booking
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set dateBooking.
-     *
-     * @param \DateTime $dateBooking
-     *
-     * @return Booking
-     */
-    public function setDateBooking($dateBooking)
-    {
-        $this->dateBooking = $dateBooking;
-
-        return $this;
     }
 
     /**
@@ -251,20 +237,6 @@ class Booking
     public function getDateVisit()
     {
         return $this->dateVisit;
-    }
-
-    /**
-     * Set reservationCode.
-     *
-     * @param string $reservationCode
-     *
-     * @return Booking
-     */
-    public function setReservationCode($reservationCode)
-    {
-        $this->reservationCode = $reservationCode;
-
-        return $this;
     }
 
     /**

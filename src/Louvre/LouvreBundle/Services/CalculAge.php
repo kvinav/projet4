@@ -8,7 +8,6 @@
 
 namespace Louvre\LouvreBundle\Services;
 
-
 class CalculAge
 {
     public function calculateAge($booking)
@@ -27,8 +26,7 @@ class CalculAge
 
 
             $age = ($bookingYear - $birthYear);
-            if( ($bookingMonth - $birthMonth) == 0 && ($bookingDay - $birthDay) < 0 )
-            {
+            if (($bookingMonth - $birthMonth) == 0 && ($bookingDay - $birthDay) < 0) {
                 $age = ($age - 1);
             }
 
@@ -36,6 +34,5 @@ class CalculAge
         }
 
         return $age;
-
     }
 }

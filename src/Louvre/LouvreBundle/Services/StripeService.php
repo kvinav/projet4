@@ -15,7 +15,6 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class StripeService
 {
-
     private $key;
 
     public function __construct($key)
@@ -28,14 +27,11 @@ class StripeService
         \Stripe\Stripe::setApiKey($this->key);
 
 
-            $charge = \Stripe\Charge::create(array(
+        $charge = \Stripe\Charge::create(array(
                 "amount" => $amount*100,
                 "currency" => "eur",
                 "source" => $token,
                 "description" => "Billetterie Louvre"
             ));
-
     }
-
-
 }

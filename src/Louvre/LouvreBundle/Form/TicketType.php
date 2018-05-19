@@ -19,21 +19,21 @@ class TicketType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name',       TextType::class, array(
+            ->add('name', TextType::class, array(
                 'label' => 'Nom',
                 'attr' => array(
                     'class' => 'form-control',
 
                     ),
             ))
-            ->add('surname',    TextType::class, array(
+            ->add('surname', TextType::class, array(
                 'label' => 'Prénom',
                 'attr' => array(
                     'class' => 'form-control',
 
                 ),
             ))
-            ->add('country',    CountryType::class, array(
+            ->add('country', CountryType::class, array(
                 'label' => 'Pays',
                 'attr' => array(
                     'class' => 'form-control',
@@ -41,7 +41,7 @@ class TicketType extends AbstractType
                 ),
 
             ))
-            ->add('dateOfBirth',BirthdayType::class, array(
+            ->add('dateOfBirth', BirthdayType::class, array(
                 'label' => 'Date de naissance',
                 'widget' => 'single_text',
                 'format' => 'dd/MM/yyyy',
@@ -51,7 +51,7 @@ class TicketType extends AbstractType
 
                 ),
             ))
-            ->add('discount',   CheckboxType::class, array(
+            ->add('discount', CheckboxType::class, array(
                 'label'    => 'Tarif réduit ?',
                 'required' => false,
                 'attr' => array(
@@ -59,8 +59,6 @@ class TicketType extends AbstractType
 
                 ),
                 ));
-
-
     }/**
      * {@inheritdoc}
      */
@@ -78,6 +76,4 @@ class TicketType extends AbstractType
     {
         return 'louvre_louvrebundle_ticket';
     }
-
-
 }
