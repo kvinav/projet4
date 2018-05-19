@@ -1,7 +1,9 @@
 
 
 /* HEADER */
-
+body {
+    overflow-x: hidden;
+}
 header img {
     margin-top: -20px;
     margin-left: 5px;
@@ -17,4 +19,10 @@ footer {
     .nav {
         margin-top: -100px;
     }
+}
+@media (max-width: 1024px) and (min-width: 768px) {
+    .nav {
+        margin-right: 50px;
+    }
+
 }
