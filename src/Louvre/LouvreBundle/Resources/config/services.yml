@@ -1,3 +1,6 @@
+parameters:
+    stripe_public_key: pk_test_YyJYkgu1VfUxiveZoEb4Ru3z
+
 services:
     louvre_louvre.booking:
         class: Louvre\LouvreBundle\Services\BookingService
