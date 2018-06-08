@@ -40,34 +40,8 @@ class LouvreControllerTestControllerTest extends WebTestCase
     public function testOrderAction()
     {
         $client = static::createClient();
-        $client->followRedirects(true);
-        $crawler = $client->request(Request::METHOD_GET, '/order');
-        $form = $crawler->selectButton('Valider')->form();
-        $values = array(
-            'order' => array(
-                'dateVisit'   => array(
-                    'day'   => 30,
-                    'month' => 01,
-                    'year'  => 2020,
-                ),
-                'type' => 'Journée',
-                'email' => 'kavignonpro@gmail.com',
-                'tickets'     => array(
-                    'Ticket n°1' => array(
-                        'name'      => 'Avignon',
-                        'surname' => 'Kevin',
-                        'country'   => 'FR',
-                        'discount' => true,
-                        'dateOfBirth' => array(
-                            'day'    => 13,
-                            'month'  => 02,
-                            'year'   => 1994,
-                        ),
-                    ),
-                ),
-            )
-        );
-        $client->request($form->getMethod(), $form->getUri(), $values);
+        $client->request(Request::METHOD_GET, '/order');
+
         $this->assertContains('Commande de billets', $client->getResponse()->getContent());
     }
 }

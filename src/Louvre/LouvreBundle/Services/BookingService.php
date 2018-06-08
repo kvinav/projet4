@@ -12,18 +12,27 @@ use Louvre\LouvreBundle\Entity\Ticket;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class BookingService
 {
     protected $mailer;
     protected $templating;
     protected $calculAge;
+    protected $normal;
+    protected $reduit;
+    protected $senior;
+    protected $enfant;
 
-    public function __construct(\Swift_Mailer $mailer, $templating, CalculAge $calculAge)
+    public function __construct(\Swift_Mailer $mailer, $templating, CalculAge $calculAge, $normal, $senior, $reduit, $enfant)
     {
         $this->mailer = $mailer;
         $this->templating = $templating;
         $this->calculAge = $calculAge;
+        $this->normal = $normal;
+        $this->reduit = $reduit;
+        $this->senior = $senior;
+        $this->enfant = $enfant;
     }
     // Calcul de l'age à partir de la date de naissance
     public function calculateAge($booking)
@@ -33,6 +42,7 @@ class BookingService
 
     public function calculatePrice()
     {
+
         $session = new Session();
         $booking = $session->get('booking');
         $totalPrice = 0;
@@ -45,26 +55,26 @@ class BookingService
 
             if ($age > 12 && $age < 60 && $discount === false) {
                 if ($type == 'Demi-journée') {
-                    $priceTicket = 16/2;
+                    $priceTicket = $this->normal/2;
                     $ticket->setPriceTicket($priceTicket);
                 } else {
-                    $priceTicket = 16;
+                    $priceTicket = $this->normal;
                     $ticket->setPriceTicket($priceTicket);
                 }
             } elseif ($age <= 12 && $age >= 4) {
                 if ($type == 'Demi-journée') {
-                    $priceTicket = 8/2;
+                    $priceTicket = $this->enfant/2;
                     $ticket->setPriceTicket($priceTicket);
                 } else {
-                    $priceTicket = 8;
+                    $priceTicket = $this->enfant;
                     $ticket->setPriceTicket($priceTicket);
                 }
             } elseif ($age >= 60 && $discount === false) {
                 if ($type == 'Demi-journée') {
-                    $priceTicket = 12/2;
+                    $priceTicket = $this->senior/2;
                     $ticket->setPriceTicket($priceTicket);
                 } else {
-                    $priceTicket = 12;
+                    $priceTicket = $this->senior;
                     $ticket->setPriceTicket($priceTicket);
                 }
             } elseif ($age < 4) {
@@ -72,18 +82,18 @@ class BookingService
                 $ticket->setPriceTicket($priceTicket);
             } elseif ($age > 12 && $age < 60 && $discount === true) {
                 if ($type == 'Demi-journée') {
-                    $priceTicket = 10/2;
+                    $priceTicket = $this->reduit/2;
                     $ticket->setPriceTicket($priceTicket);
                 } else {
-                    $priceTicket = 10;
+                    $priceTicket = $this->reduit;
                     $ticket->setPriceTicket($priceTicket);
                 }
             } elseif ($age >= 60 && $discount === true) {
                 if ($type == 'Demi-journée') {
-                    $priceTicket = 10/2;
+                    $priceTicket = $this->reduit/2;
                     $ticket->setPriceTicket($priceTicket);
                 } else {
-                    $priceTicket = 10;
+                    $priceTicket = $this->reduit;
                     $ticket->setPriceTicket($priceTicket);
                 }
             } else {

@@ -85,7 +85,7 @@ class LouvreController extends Controller
         $totalTickets = $validNumberService->getTotalTickets($todayDate);
 
 
-        if ($totalTickets > 1000) {
+        if ($totalTickets > $maxTickets = $this->getParameter('maxtickets')) {
             $session->getFlashBag()->add(
                 'notice',
                 'Les réservations sont complètes pour ce jour là'

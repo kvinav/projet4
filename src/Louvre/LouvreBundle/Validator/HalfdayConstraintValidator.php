@@ -25,7 +25,7 @@ class HalfdayConstraintValidator extends ConstraintValidator
             $timeBooking = $dateBooking->format('H');
             $type = $booking->getType();
 
-            if ($timeBooking >= 12 && $type == 'Journée' && ($dateVisit === $dateBookingFormat)) {
+            if ($timeBooking >= 14 && $type == 'Journée' && ($dateVisit === $dateBookingFormat)) {
                 $this->context->buildViolation($constraint->message)->atPath('type')->addViolation();
             }
         }
